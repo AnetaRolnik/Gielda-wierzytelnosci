@@ -7,6 +7,7 @@ const Search = (): JSX.Element => {
   return (
     <div className="search">
       <Container>
+        <div className="search__title">Podaj nip lub nazwę dłużnika</div>
         <SearchForm />
       </Container>
     </div>

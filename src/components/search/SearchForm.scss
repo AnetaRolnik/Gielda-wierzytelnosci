@@ -4,17 +4,8 @@
   $self: &;
 
   &--search {
-    #{ $self }__label {
-      text-transform: uppercase;
-      color: $white-900;
-      font-weight: 600;
-      display: block;
-      margin-bottom: 12px;
-      text-align: center;
-
-      @media screen and (min-width: 576px) {
-        text-align: left;
-      }
+    @media screen and (min-width: 576px) {
+      display: flex;
     }
 
     #{ $self }__control {
@@ -33,7 +24,7 @@
       }
 
       @media screen and (min-width: 576px) {
-        width: 394px;
+        width: 424px;
       }
     }
 

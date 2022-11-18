@@ -3,4 +3,16 @@
 .search {
   background-color: $primary;
   padding: 35px 0 55px;
+
+  &__title {
+    text-transform: uppercase;
+    color: $white-900;
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-align: center;
+
+    @media screen and (min-width: 576px) {
+      text-align: left;
+    }
+  }
 }
