@@ -1,5 +1,11 @@
+import Search from "./components/search/Search";
+
 const App = (): JSX.Element => {
-  return <div className="App">Giełda wierzytelności</div>;
+  return (
+    <>
+      <Search />
+    </>
+  );
 };
 
 export default App;

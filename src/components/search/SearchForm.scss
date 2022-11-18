@@ -1,0 +1,67 @@
+@import "../../variables.scss";
+
+.form {
+  $self: &;
+
+  &--search {
+    #{ $self }__label {
+      text-transform: uppercase;
+      color: $white-900;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 12px;
+      text-align: center;
+
+      @media screen and (min-width: 576px) {
+        text-align: left;
+      }
+    }
+
+    #{ $self }__control {
+      padding: 15px;
+      border: 0;
+      width: 100%;
+      transition: background-color $transition-base;
+
+      &:hover {
+        background-color: $white-950;
+      }
+
+      &:focus {
+        outline: none;
+        background-color: $white-900;
+      }
+
+      @media screen and (min-width: 576px) {
+        width: 394px;
+      }
+    }
+
+    #{ $self }__btn {
+      text-transform: uppercase;
+      background-color: #e40321;
+      border: 0;
+      color: $white;
+      cursor: pointer;
+      padding: 0 48px;
+      height: 46px;
+      font-weight: 600;
+      margin-top: 12px;
+      width: 100%;
+      transition: background-color $transition-base;
+
+      &:hover {
+        background-color: lighten($secondary, 2%);
+      }
+
+      &:focus {
+        background-color: lighten($secondary, 4%);
+      }
+
+      @media screen and (min-width: 576px) {
+        width: auto;
+        margin: 0;
+      }
+    }
+  }
+}
