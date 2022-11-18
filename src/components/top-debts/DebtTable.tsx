@@ -9,7 +9,12 @@ const DebtTable = (): JSX.Element => {
   useEffect(() => {
     fetch("https://rekrutacja-webhosting-it.krd.pl/api/Recruitment/GetTopDebts")
       .then((response) => response.json())
-      .then((data) => setDebts(data));
+      .then((data) => {
+        const sotrtedData = data.sort((a: any, b: any) =>
+          a.Name > b.Name ? 1 : -1
+        );
+        setDebts(sotrtedData);
+      });
   }, []);
 
   return (
