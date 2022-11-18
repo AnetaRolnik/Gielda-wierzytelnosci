@@ -1,5 +1,7 @@
 import { DebtWithoutId } from "./types";
 
+import "./DebtTable.scss";
+
 type Props = {
   debt: DebtWithoutId;
 };
@@ -20,11 +22,11 @@ const Debt = (props: Props): JSX.Element => {
   const formattedDate = formatDate(newDate);
 
   return (
-    <tr>
-      <td>{Name}</td>
-      <td>{NIP}</td>
-      <td>{Value}</td>
-      <td>{formattedDate}</td>
+    <tr className="table__row">
+      <td className="table__data">{Name}</td>
+      <td className="table__data">{NIP}</td>
+      <td className="table__data">{Value}</td>
+      <td className="table__data">{formattedDate}</td>
     </tr>
   );
 };
