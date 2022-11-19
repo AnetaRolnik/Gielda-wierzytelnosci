@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 
 import { Debts } from "./components/top-debts/types";
+import { SearchedValue } from "./components/search/types";
 import Search from "./components/search/Search";
 import TopDebts from "./components/top-debts/TopDebts";
 
 const App = (): JSX.Element => {
-  const [debts, setDebts] = useState<Debts | null>([]);
+  const [debts, setDebts] = useState<Debts>([]);
 
   useEffect(() => {
     fetch("https://rekrutacja-webhosting-it.krd.pl/api/Recruitment/GetTopDebts")
@@ -18,7 +19,7 @@ const App = (): JSX.Element => {
       });
   }, [setDebts]);
 
-  const searchHandler = (search: string) => {
+  const searchHandler = (search: SearchedValue) => {
     fetch(
       "https://rekrutacja-webhosting-it.krd.pl/api/Recruitment/GetFilteredDebts",
       {

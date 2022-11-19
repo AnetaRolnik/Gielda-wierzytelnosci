@@ -1,13 +1,14 @@
 import { useState } from "react";
 
+import { SearchHandler, SearchedValue } from "./types";
 import "./SearchForm.scss";
 
 type Props = {
-  onSearch: (search: string) => void;
+  onSearch: SearchHandler;
 };
 
 const SearchForm = (props: Props): JSX.Element => {
-  const [enteredSearch, setEnteredSearch] = useState("");
+  const [enteredSearch, setEnteredSearch] = useState<SearchedValue>("");
   const { onSearch } = props;
 
   const searchHandler = async (event: React.SyntheticEvent) => {

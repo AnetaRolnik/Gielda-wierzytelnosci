@@ -3,7 +3,7 @@ import DebtTable from "./DebtTable";
 import { Debts } from "./types";
 
 type Props = {
-  debts: Debts | null;
+  debts: Debts;
 };
 
 const TopDebts = (props: Props): JSX.Element => {

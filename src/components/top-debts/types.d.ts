@@ -15,4 +15,4 @@ export type DebtWithId = Debt & {
   Id: DebtId;
 };
 
-export type Debts = DebtWithId[];
+export type Debts = DebtWithId[] | null;

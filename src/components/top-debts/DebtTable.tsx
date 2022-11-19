@@ -4,7 +4,7 @@ import { Debts } from "./types";
 import "./DebtTable.scss";
 
 type Props = {
-  debts: Debts | null;
+  debts: Debts;
 };
 
 const DebtTable = (props: Props): JSX.Element => {
