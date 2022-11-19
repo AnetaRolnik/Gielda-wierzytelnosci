@@ -1,11 +1,40 @@
+import { useEffect, useState } from "react";
+
+import { Debts } from "./components/top-debts/types";
 import Search from "./components/search/Search";
 import TopDebts from "./components/top-debts/TopDebts";
 
 const App = (): JSX.Element => {
+  const [debts, setDebts] = useState<Debts | null>([]);
+
+  useEffect(() => {
+    fetch("https://rekrutacja-webhosting-it.krd.pl/api/Recruitment/GetTopDebts")
+      .then((response) => response.json())
+      .then((data) => {
+        const sotrtedData = data.sort((a: any, b: any) =>
+          a.Name > b.Name ? 1 : -1
+        );
+        setDebts(sotrtedData);
+      });
+  }, [setDebts]);
+
+  const searchHandler = (search: string) => {
+    fetch(
+      "https://rekrutacja-webhosting-it.krd.pl/api/Recruitment/GetFilteredDebts",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(search),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => setDebts(data));
+  };
+
   return (
     <>
-      <Search />
-      <TopDebts />
+      <Search onSearch={searchHandler} />
+      <TopDebts debts={debts} />
     </>
   );
 };

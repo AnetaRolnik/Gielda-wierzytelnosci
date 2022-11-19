@@ -1,23 +1,14 @@
-import { useEffect, useState } from "react";
-
 import Debt from "./Debt";
 import { Debts } from "./types";
 
 import "./DebtTable.scss";
 
-const DebtTable = (): JSX.Element => {
-  const [debts, setDebts] = useState<Debts | null>([]);
+type Props = {
+  debts: Debts | null;
+};
 
-  useEffect(() => {
-    fetch("https://rekrutacja-webhosting-it.krd.pl/api/Recruitment/GetTopDebts")
-      .then((response) => response.json())
-      .then((data) => {
-        const sotrtedData = data.sort((a: any, b: any) =>
-          a.Name > b.Name ? 1 : -1
-        );
-        setDebts(sotrtedData);
-      });
-  }, []);
+const DebtTable = (props: Props): JSX.Element => {
+  const { debts } = props;
 
   return (
     <table className="table table--debts">

@@ -3,12 +3,18 @@ import SearchForm from "./SearchForm";
 
 import "./Search.scss";
 
-const Search = (): JSX.Element => {
+type Props = {
+  onSearch: (search: string) => void;
+};
+
+const Search = (props: Props): JSX.Element => {
+  const { onSearch } = props;
+
   return (
     <div className="search">
       <Container>
         <div className="search__title">Podaj nip lub nazwę dłużnika</div>
-        <SearchForm />
+        <SearchForm onSearch={onSearch} />
       </Container>
     </div>
   );
