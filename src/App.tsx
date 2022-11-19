@@ -44,7 +44,7 @@ const App = (): JSX.Element => {
     <>
       <Search onSearch={searchHandler} isLoading={isLoading} />
       {isLoading && <Loader />}
-      {!isLoading && <TopDebts debts={debts} />}
+      {!isLoading && debts.length > 0 && <TopDebts debts={debts} />}
     </>
   );
 };

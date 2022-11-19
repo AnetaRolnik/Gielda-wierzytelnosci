@@ -11,8 +11,8 @@ export type DebtWithoutId = {
   Date: DebtDate;
 };
 
-export type DebtWithId = Debt & {
+export type DebtWithId = DebtWithoutId & {
   Id: DebtId;
 };
 
-export type Debts = DebtWithId[] | null;
+export type Debts = DebtWithId[] | [];

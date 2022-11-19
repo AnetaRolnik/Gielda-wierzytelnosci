@@ -21,7 +21,8 @@ const DebtTable = (props: Props): JSX.Element => {
         </tr>
       </thead>
       <tbody>
-        {debts && debts.map((debt) => <Debt key={debt.Id} debt={debt} />)}
+        {debts.length > 0 &&
+          debts.map((debt) => <Debt key={debt.Id} debt={debt} />)}
       </tbody>
     </table>
   );
