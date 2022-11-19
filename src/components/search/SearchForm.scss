@@ -45,6 +45,11 @@
         background-color: lighten($secondary, 4%);
       }
 
+      &:disabled {
+        background-color: darken($white, 25%);
+        cursor: default;
+      }
+
       @media screen and (min-width: 576px) {
         width: auto;
         margin: 0;

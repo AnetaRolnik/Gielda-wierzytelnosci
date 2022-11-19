@@ -4,9 +4,11 @@ import { Debts } from "./components/top-debts/types";
 import { SearchedValue } from "./components/search/types";
 import Search from "./components/search/Search";
 import TopDebts from "./components/top-debts/TopDebts";
+import Loader from "./components/UI/loader/Loader";
 
 const App = (): JSX.Element => {
   const [debts, setDebts] = useState<Debts>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetch("https://rekrutacja-webhosting-it.krd.pl/api/Recruitment/GetTopDebts")
@@ -15,11 +17,14 @@ const App = (): JSX.Element => {
         const sotrtedData = data.sort((a: any, b: any) =>
           a.Name > b.Name ? 1 : -1
         );
+        setIsLoading(false);
         setDebts(sotrtedData);
       });
   }, [setDebts]);
 
   const searchHandler = (search: SearchedValue) => {
+    setIsLoading(true);
+
     fetch(
       "https://rekrutacja-webhosting-it.krd.pl/api/Recruitment/GetFilteredDebts",
       {
@@ -29,13 +34,17 @@ const App = (): JSX.Element => {
       }
     )
       .then((response) => response.json())
-      .then((data) => setDebts(data));
+      .then((data) => {
+        setIsLoading(false);
+        setDebts(data);
+      });
   };
 
   return (
     <>
-      <Search onSearch={searchHandler} />
-      <TopDebts debts={debts} />
+      <Search onSearch={searchHandler} isLoading={isLoading} />
+      {isLoading && <Loader />}
+      {!isLoading && <TopDebts debts={debts} />}
     </>
   );
 };

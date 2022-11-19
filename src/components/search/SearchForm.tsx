@@ -5,10 +5,11 @@ import "./SearchForm.scss";
 
 type Props = {
   onSearch: SearchHandler;
+  isLoading: boolean;
 };
 
 const SearchForm = (props: Props): JSX.Element => {
-  const { onSearch } = props;
+  const { onSearch, isLoading } = props;
 
   const [enteredSearch, setEnteredSearch] = useState<SearchedValue>("");
   const [isValid, setIsValid] = useState<boolean>(true);
@@ -39,7 +40,9 @@ const SearchForm = (props: Props): JSX.Element => {
           onChange={(event) => setEnteredSearch(event.target.value)}
           value={enteredSearch}
         />
-        <button className="form__btn">Szukaj</button>
+        <button className="form__btn" disabled={isLoading}>
+          Szukaj
+        </button>
       </div>
       {!isValid && (
         <div className="form__error">

@@ -6,15 +6,16 @@ import "./Search.scss";
 
 type Props = {
   onSearch: SearchHandler;
+  isLoading: boolean;
 };
 
 const Search = (props: Props): JSX.Element => {
-  const { onSearch } = props;
+  const { onSearch, isLoading } = props;
 
   return (
     <div className="search">
       <Container>
-        <SearchForm onSearch={onSearch} />
+        <SearchForm onSearch={onSearch} isLoading={isLoading} />
       </Container>
     </div>
   );
