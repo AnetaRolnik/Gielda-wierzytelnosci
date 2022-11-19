@@ -4,10 +4,6 @@
   $self: &;
 
   &--search {
-    @media screen and (min-width: 576px) {
-      display: flex;
-    }
-
     #{ $self }__control {
       padding: 15px;
       border: 0;
@@ -52,6 +48,35 @@
       @media screen and (min-width: 576px) {
         width: auto;
         margin: 0;
+      }
+    }
+
+    #{ $self }__label {
+      display: block;
+      text-transform: uppercase;
+      color: $white-900;
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-align: center;
+
+      @media screen and (min-width: 576px) {
+        text-align: left;
+      }
+    }
+
+    #{ $self }__error {
+      color: $error;
+      margin-top: 8px;
+      text-align: center;
+
+      @media screen and (min-width: 576px) {
+        text-align: left;
+      }
+    }
+
+    #{ $self }__actions {
+      @media screen and (min-width: 576px) {
+        display: flex;
       }
     }
   }

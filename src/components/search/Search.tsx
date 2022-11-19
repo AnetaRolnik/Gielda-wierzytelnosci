@@ -14,7 +14,6 @@ const Search = (props: Props): JSX.Element => {
   return (
     <div className="search">
       <Container>
-        <div className="search__title">Podaj nip lub nazwę dłużnika</div>
         <SearchForm onSearch={onSearch} />
       </Container>
     </div>
