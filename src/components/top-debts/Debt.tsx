@@ -1,6 +1,6 @@
 import { DebtWithoutId } from "./types";
 
-import "./DebtTable.scss";
+import "./TopDebts.scss";
 
 type Props = {
   debt: DebtWithoutId;

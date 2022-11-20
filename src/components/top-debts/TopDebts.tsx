@@ -1,6 +1,7 @@
-import Container from "../layout/container/Container";
-import DebtTable from "./DebtTable";
+import Debt from "./Debt";
 import { Debts } from "./types";
+
+import "./TopDebts.scss";
 
 type Props = {
   debts: Debts;
@@ -10,9 +11,20 @@ const TopDebts = (props: Props): JSX.Element => {
   const { debts } = props;
 
   return (
-    <Container>
-      <DebtTable debts={debts} />
-    </Container>
+    <table className="table table--debts">
+      <thead>
+        <tr className="table__row">
+          <th className="table__head">Dłużnik</th>
+          <th className="table__head">Nip</th>
+          <th className="table__head">Kwota zadłużenia</th>
+          <th className="table__head">Data powstania zobowiązania</th>
+        </tr>
+      </thead>
+      <tbody>
+        {debts.length > 0 &&
+          debts.map((debt) => <Debt key={debt.Id} debt={debt} />)}
+      </tbody>
+    </table>
   );
 };
 

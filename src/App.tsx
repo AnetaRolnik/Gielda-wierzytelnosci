@@ -5,6 +5,8 @@ import { SearchedValue } from "./components/search/types";
 import Search from "./components/search/Search";
 import TopDebts from "./components/top-debts/TopDebts";
 import Loader from "./components/UI/loader/Loader";
+import Container from "./components/layout/container/Container";
+import EmptyState from "./components/UI/empty-state/EmptyState";
 
 const App = (): JSX.Element => {
   const [debts, setDebts] = useState<Debts>([]);
@@ -43,8 +45,11 @@ const App = (): JSX.Element => {
   return (
     <>
       <Search onSearch={searchHandler} isLoading={isLoading} />
-      {isLoading && <Loader />}
-      {!isLoading && debts.length > 0 && <TopDebts debts={debts} />}
+      <Container>
+        {isLoading && <Loader />}
+        {!isLoading && debts.length > 0 && <TopDebts debts={debts} />}
+        {!isLoading && debts.length === 0 && <EmptyState />}
+      </Container>
     </>
   );
 };
