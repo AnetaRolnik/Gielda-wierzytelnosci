@@ -1,7 +1,5 @@
 import { DebtWithoutId } from "./types";
 
-import "./TopDebts.scss";
-
 type Props = {
   debt: DebtWithoutId;
 };
@@ -15,7 +13,7 @@ const formatDate = (date: Date) =>
     date.getFullYear(),
   ].join("-");
 
-const Debt = (props: Props): JSX.Element => {
+const TableRow = (props: Props): JSX.Element => {
   const { Name, NIP, Value, Date: date } = props.debt;
 
   const newDate = new Date(date);
@@ -31,4 +29,4 @@ const Debt = (props: Props): JSX.Element => {
   );
 };
 
-export default Debt;
+export default TableRow;

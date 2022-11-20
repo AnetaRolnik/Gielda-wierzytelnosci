@@ -1,26 +1,36 @@
 import { useEffect, useState } from "react";
 
-import { Debts } from "./components/top-debts/types";
+import { Debts, SortBy, SortOrder } from "./components/top-debts/types";
 import { SearchedValue } from "./components/search/types";
 import Search from "./components/search/Search";
-import TopDebts from "./components/top-debts/TopDebts";
+import TopDebtsTable from "./components/top-debts/TopDebtsTable";
 import Loader from "./components/UI/loader/Loader";
 import Container from "./components/layout/container/Container";
 import EmptyState from "./components/UI/empty-state/EmptyState";
 
+const sortData = (data: any, sortBy: SortBy, sortOrder: SortOrder) => {
+  const sortedData = [...data].sort(
+    (a, b) =>
+      a[sortBy].toString().localeCompare(b[sortBy].toString(), undefined, {
+        numeric: true,
+      }) * (sortOrder === "asc" ? 1 : -1)
+  );
+
+  return sortedData;
+};
+
 const App = (): JSX.Element => {
   const [debts, setDebts] = useState<Debts>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://rekrutacja-webhosting-it.krd.pl/api/Recruitment/GetTopDebts")
       .then((response) => response.json())
       .then((data) => {
-        const sotrtedData = data.sort((a: any, b: any) =>
-          a.Name > b.Name ? 1 : -1
-        );
+        const sortedData = sortData(data, "Name", "asc");
+
         setIsLoading(false);
-        setDebts(sotrtedData);
+        setDebts(sortedData);
       });
   }, [setDebts]);
 
@@ -42,12 +52,20 @@ const App = (): JSX.Element => {
       });
   };
 
+  const sortHandler = (sortBy: SortBy, sortOrder: SortOrder) => {
+    const sortedData = sortData(debts, sortBy, sortOrder);
+
+    setDebts(sortedData);
+  };
+
   return (
     <>
       <Search onSearch={searchHandler} isLoading={isLoading} />
       <Container>
         {isLoading && <Loader />}
-        {!isLoading && debts.length > 0 && <TopDebts debts={debts} />}
+        {!isLoading && debts.length > 0 && (
+          <TopDebtsTable debts={debts} onSort={sortHandler} />
+        )}
         {!isLoading && debts.length === 0 && <EmptyState />}
       </Container>
     </>

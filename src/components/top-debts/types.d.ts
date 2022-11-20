@@ -3,6 +3,8 @@ export type DebtNIP = string;
 export type DebtValue = number;
 export type DebtDate = Date;
 export type DebtId = number;
+export type SortBy = string;
+export type SortOrder = string;
 
 export type DebtWithoutId = {
   Name: DebtName;
@@ -16,3 +18,5 @@ export type DebtWithId = DebtWithoutId & {
 };
 
 export type Debts = DebtWithId[] | [];
+
+export type SortHandler = (sortBy: SortBy, sortOrder: SortOrder) => void;

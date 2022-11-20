@@ -51,5 +51,9 @@
         padding: 24px 20px;
       }
     }
+
+    #{ $self }__icon {
+      margin-left: 4px;
+    }
   }
 }
