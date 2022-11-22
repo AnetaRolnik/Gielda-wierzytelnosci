@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { Debts, SortBy, SortOrder } from "./components/top-debts/types";
+import {
+  Debts,
+  DebtWithId,
+  SortBy,
+  SortOrder,
+} from "./components/top-debts/types";
 import { SearchedValue } from "./components/search/types";
 import Search from "./components/search/Search";
 import TopDebtsTable from "./components/top-debts/TopDebtsTable";
@@ -27,12 +32,21 @@ const App = (): JSX.Element => {
     fetch("https://rekrutacja-webhosting-it.krd.pl/api/Recruitment/GetTopDebts")
       .then((response) => response.json())
       .then((data) => {
-        const sortedData = sortData(data, "Name", "asc");
+        const newData = data.map((d: DebtWithId) => {
+          return {
+            Id: d.Id,
+            Name: d.Name,
+            Value: d.Value,
+            NIP: d.NIP,
+            Date: d.Date,
+          };
+        });
+        const sortedData = sortData(newData, "Name", "asc");
 
         setIsLoading(false);
         setDebts(sortedData);
       });
-  }, [setDebts]);
+  }, []);
 
   const searchHandler = (search: SearchedValue) => {
     setIsLoading(true);
@@ -47,8 +61,18 @@ const App = (): JSX.Element => {
     )
       .then((response) => response.json())
       .then((data) => {
+        const newData = data.map((d: DebtWithId) => {
+          return {
+            Id: d.Id,
+            Name: d.Name,
+            Value: d.Value,
+            NIP: d.NIP,
+            Date: d.Date,
+          };
+        });
+
         setIsLoading(false);
-        setDebts(data);
+        setDebts(newData);
       });
   };
 
