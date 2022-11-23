@@ -9,7 +9,12 @@
 /coverage
 
 # production
-/build
+/build/robots.txt
+/build/manifest.json
+/build/asset-manifest.json
+/build/static/js/main.d5c02248.js.map
+/build/static/js/main.d5c02248.js.LICENSE.txt
+/build/static/css/main.c12bf438.css.map
 
 # misc
 .DS_Store
