@@ -21,7 +21,9 @@ const TableRow = (props: Props): JSX.Element => {
 
   return (
     <tr className="table__row">
-      <td className="table__data">{Name}</td>
+      <td className="table__data" data-testid="name-column">
+        {Name}
+      </td>
       <td className="table__data">{NIP}</td>
       <td className="table__data">{Value}</td>
       <td className="table__data">{formattedDate}</td>
