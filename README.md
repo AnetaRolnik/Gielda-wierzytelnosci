@@ -2,6 +2,10 @@
 
 _Recrutiment task_
 
+The static assets are in the `build` folder.
+
+### About this project
+
 Main features:
 
 - Displaying the TOP10 debts
